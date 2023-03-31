@@ -1,0 +1,63 @@
+\begin{cabstract}
+
+% 距离人们观测到高能宇宙射线已经过了近百年的时间，时至今日这些宇宙射线的起源依然无法被准确地回答。中微子是一种不带电且相互作用微弱的基本粒子，它可以通过强子过程伴随宇宙线同时产生。通过寻找中微子的方式能够一锤定音地确定宇宙线的起源。
+高能中微子是人们观测宇宙的重要信使，通过寻找高能中微子的天体物理源，我们可以更深入地理解天体物理加速机制，解答宇宙射线起源的百年难题。
+建成于2011年的IceCube是世界上第一台立方公里级别的中微子望远镜，它首次观测到了来自宇宙中弥散的中微子流强。在随后的运行中，IceCube以3.5$\sigma$和4.2$\sigma$的置信度分别找到了可能的中微子源TXS-0506+056和NGC 1068。
+IceCube的观测结果表明下一代中微子望远镜需要拥有更庞大的体积和更好的角度分辨率才能从弥散的中微子流强中确切地找到产生它的天体物理源。
+
+海铃计划旨在中国南海建设一个次时代的中微子望远镜——海铃中微子望远镜（TRIDENT）。
+本文的研究工作围绕海铃中微子望远镜的预研展开，主要分为四个部分：（1）中微子望远镜的模拟框架开发；（2）海铃的性能分析；（3）优化海铃的设计；（4）海铃探路者实验。
+
+我们参与研发最新的CORSIKA8模拟程序，并以之为框架搭建了一套新的中微子事件产生器，在其中我们实现了中微子反应事件的重要性采样，以及调用现有的成熟物理模块进行深度非弹性散射，轻子传播能损和陶子衰变等物理过程的模拟。
+得到反应的产物粒子后，我们会在阵列范围内对粒子进行高精度的模拟。为解决过程中的计算资源消耗问题，我们选择只用Geant4来追踪复杂的强子成分，而转用参数化的方式取代了电磁簇射模拟，以此获得了约$10^3$倍的性能提升。
+这些能够产生切伦科夫光的带电粒子径迹随后会被输入到一个我们自己开发的GPU加速的光线追踪模拟程序中。程序会利用GPU的并行计算功能，可以达到每秒处理$4\times 10^8$个光子的处理速度，相比于传统模拟提升约有$10^3$倍。
+在光子到达混合数字光学模块（hDOM）表面后，我们使用Geant4来模拟光子传播到光敏元件——光电倍增管（PMT）和硅光电倍增器（SiPM）的行为。在此程序中，hDOM内部的几何细节都被清晰得构建出来。
+此外，我们还设计了模拟PMT将到达其表面的光子放大成电信号波形的程序。
+
+我们使用自己构建的模拟程序进行了大批量的中微子事件模拟，用于分析海铃中微子望远镜的性能。
+我们对缪子中微子（$\nu_\mu$）产生的径迹型事件进行了角度重建分析，基于hDOM测量到的光子到达时间，我们使用最大似然估计的方法来重建径迹的方向。我们的重建结果表明海铃对$1\,\mathrm{TeV}$的$\nu_\mu$的角度分辨率可以达到$1^\circ$以内，而对$1\,\mathrm{PeV}$的$\nu_\mu$可以达到$0.1^\circ$。
+我们对海铃中$\nu_\mu$的有效面积进行了分析，通过对事件完备的采样和筛选，我们得到海铃在$1\,\mathrm{TeV}$处有$\sim 10^2\,\mathrm{m^2}$的有效面积，并在$1\,\mathrm{PeV}$处达到$2\times 10^3\,\mathrm{m^2}$。
+利用角分辨和有效面积，我们可以分析海铃对中微子点源的灵敏度，我们发现海铃能够在一年内就以$5\sigma$的置信度发现NGC 1068。而且海铃靠近赤道的纬度位置让它对全天各个赤纬的源都有很好的灵敏度。
+
+利用上述搭建起来的模拟和分析流程，我们可以对中微子望远镜中的设计进行优化。
+我们探讨了相比于传统只含有PMT的mDOM，加入了SiPM之后的hDOM在径迹型事件的方向重建上的优势。我们发现SiPM的快速时间响应性能和高量子效率能够带来约$40\%$的角度重建精度的提升。
+我们还对一种新的探测器几何构型——彭罗斯构型进行了研究。该构型参考自彭罗斯镶嵌，其中夹杂着密集和稀疏的区域，用以拓宽对簇射型事件的响应能区。此外，阵列的非周期性排布也能有效降低径迹型事件漏过探测器。
+最后，我们研究望远镜的性能随着阵列中hDOM之间的水平和垂直方向上的间距的变化。
+我们尝试了多种不同的间距缩放因子，发现垂直间距放大到1.2倍有利于探测能谱指数为-2的源；而将水平间距缩小到原来的0.7倍则有利于探测能谱指数为-3的中微子源。
+
+除了上述模拟和分析的研究外，我们还进行了海铃探路者实验。该实验旨在测量海铃选址处$3400\,\mathrm{m}$深的海水的光学性质，实验采用了自主研发设计的PMT测量系统和相机测量系统。我所在的小组几乎从零开始完成了对PMT系统的整体设计，PMT性能测试，系统响应标定，水下实验采数，以及后续数据分析的全套流程。我们还开发了与之配套的模拟程序，用以辅助实验设计和数据分析。
+
+
+
+\end{cabstract}
+
+\begin{eabstract}
+
+High-energy neutrinos are important messengers to observe the universe. By searching for the astrophysical sources of high-energy neutrinos, we can understand of acceleration mechanisms in the extreme astrophysical sources and solve the century-old mystery of the origin of cosmic rays.
+IceCube, built in 2011, is the world's first kilometer-scale neutrino telescope. It first observed a diffuse neutrino flux of from the universe. In subsequent operations, IceCube found potential neutrino sources TXS-0506+056 and NGC 1068 with confidence levels of 3.5$\sigma$ and 4.2$\sigma$, respectively.
+The observation results from IceCube suggest that the next generation of neutrino telescopes need a larger volume and better angular resolution to identify the astrophysical sources that produce the diffuse neutrino flux.
+
+The Hai Ling Project aims to construct a next-generation neutrino telescope, TRIDENT, in the South China Sea. This paper focuses on the pre-research of TRIDENT and is divided into four main parts: (1) the development of the simulation framework for the neutrino telescope, (2) performance analysis of TRIDENT, (3) optimization of the design of TRIDENT, and (4) the TRIDENT Pathfinder experiment.
+
+We participated in the development of the latest simulation program - CORSIKA8 and used it as a framework to build a new neutrino event generator. We implemented important sampling of neutrino events in this generator and it can call mature physics modules such as Pythia8, PROPOSAL, and TAUOLA for simulating deep inelastic scattering, lepton energy loss during propagation, and tau decay, and so on.
+After obtaining the interaction products, we perform high-precision simulations for particles that arrive at the array. To address the issue of computational resource consumption, we choose to use Geant4 only to track complex hadronic interaction and replaced electromagnetic shower simulations with a parameterization method, which brings about a $10^3$ performance improvement.
+The charged particle trajectories that can produce Cherenkov light are then input into a GPU-accelerated ray-tracing simulation program that we developed. This program utilizes the parallel computing capabilities of GPUs and can process $4 \times 10^8$ photons per second, which is about a $10^3$ improvement compared to traditional simulations.
+After the photons reach the surface of the hybrid digital optical module (hDOM), we use Geant4 to simulate their behavior as they propagate to the photosensitive components such as photomultiplier tubes (PMTs) and silicon photomultipliers (SiPMs). In this program, the details of the internal geometry structure of the hDOM are crafted accurately.
+Additionally, we have designed a program to simulate the amplification of photons reaching the surface of a PMT into electrical signal waveforms.
+
+We simulated a large number of neutrino events using the simulation framework developed above to analyze the performance of the TRIDENT neutrino telescope. We performed angle reconstruction on track-type events produced by muon neutrinos ($\nu_\mu$). Based on the photon arrival time measured by hDOM, a maximum likelihood estimation method is used to reconstruct the direction of the track. Our reconstruction results showed that TRIDENT can achieve an angular resolution of less than $1^\circ$ for $\nu_\mu$ with an energy of $1,\mathrm{TeV}$, and $0.1^\circ$ for $1,\mathrm{PeV}$ $\nu_\mu$.
+We analyzed the effective area of TRIDENT for $\nu_\mu$. We simulated a complete event samples and select the well-reconstructed events. We found that TRIDENT has an effective area of $\sim 10^2,\mathrm{m^2}$ at $1,\mathrm{TeV}$ and reaches $2\times 10^3,\mathrm{m^2}$ at $1,\mathrm{PeV}$, which is more than ten times that of IceCube.
+Using the angular resolution and effective area, we analyzed the sensitivity of TRIDENT to neutrino point sources. By analyzing the correlation of events in direction space, we found that TRIDENT can discover NGC 1068 with a confidence level of $5\sigma$ within just one year. TRIDENT also has the detection capability beyond IceCube-Gen2 for neutrino sources in all directions of the sky.
+
+
+Using the simulation and analysis framework we built, we studied the optimization of the design of the neutrino telescope.
+We explored the advantage of using SiPMs in hDOM compared to the traditional mDOM with only PMTs for direction reconstruction of track-like events. In the study, we found that the fast timing ability and high quantum efficiency of SiPMs brings a 40\% improvement in angular resolution compared to mDOM.
+We also studied a new detector geometry layout that follows Penrose tiling. This layout includes dense and sparse regions to expand the response energy range for shower-like events. Moreover, the non-periodic structure of the array can effectively reduce the corridor events that slip through the array.
+Finally, we investigated how the performance of the telescope changes with the horizontal and vertical spacing between hDOMs in the array. We tried several different scaling factors and found that increasing the vertical spacing by 1.2 times was beneficial for detecting sources with a spectral index of -2, while decreasing the horizontal spacing to 0.7 improves the sensitivity for detecting sources with a spectral index of -3.
+
+In addition to the simulation and analysis studies mentioned above, we also conducted the TRIDENT pathfinder experiment. The experiment aimed to measure the optical properties of deep-sea water at a depth of 3400 m at the TRIDENT site, using a self-developed PMT measurement system and a camera measurement system. Our group completed the entire process of PMT system design, PMT performance testing, system response calibration, underwater experimental data collection, and subsequent data analysis. The pathfinder experiment provided precious experience in PMT performance, electronic data acquisition system design, and ocean engineering implementation, which are crucial for the construction of the feature large array. The analyzed optical properties of the decoded seawater absorption and scattering in the experiment were used as optimization parameters for simulation and array optimization design.
+
+
+\end{eabstract}
+
+% vim:ts=4:sw=4

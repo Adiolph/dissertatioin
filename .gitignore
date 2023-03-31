@@ -1,0 +1,10 @@
+# latex compiled files
+/*.pdf
+**.log
+**.bcf
+**.fdb_latexmk
+**.fls
+**.aux
+**.out
+**.toc
+**.idx
