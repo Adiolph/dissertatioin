@@ -57,7 +57,7 @@
 \centering
     \includegraphics[width=0.73\textwidth]{img/event_generator_schem_fig.pdf}
     \includegraphics[width=0.25\textwidth]{img/event_generator_schem_legend.pdf}
-    \caption{\textsf{PYTHIA}所处理的$pp\to t\bar{t}$事件的示意图。}
+    \caption{\textsf{PYTHIA}所处理的$pp\to t\bar{t}$事件的示意图。图片来自\parencite{Pythia8.3:2022}}
     \label{fig:event_generator_schem}
 \end{figure}
 
@@ -149,7 +149,7 @@
 
 电子在海水中主要通过韧致辐射和电离两种方式损失能量。其中韧致辐射过程将会发射光子，光子将会继续以康普顿散射的形式将能量传递给新的电子，由此实现了电子数量的倍增，即引发级联簇射过程。而电离过程会导致电子能量以热能的形式沉积在海水中，并在电子能量比较低时占据主要能损的地位。
 
-在海水中，韧致辐射能损和电离能损的效率相同时的电子能量被定义为电子在海水中的临界能量（critical energy）\cite{PROPOSAL:2013}$E_c^e \simeq 0.1 \,\mathrm{GeV}$。\CHECK{CHECK THIS IN PROPOSAL}当电子能量高于$E_c^e$时将会发生级联簇射过程，而低于$E_c$时则不大可能会继续产生新的高能电子。
+在海水中，韧致辐射能损和电离能损的效率相同时的电子能量被定义为电子在海水中的临界能量（critical energy）\cite{PROPOSAL:2013}$E_c^e \simeq 0.1 \,\mathrm{GeV}$。当电子能量高于$E_c^e$时将会发生级联簇射过程，而低于$E_c$时则难以再继续产生新的高能电子。
 通过简单的计算，我们可以知道电子在海水中的簇射演化过程大约能产生的次级粒子数量为：
 \begin{equation}
     N(E_0) \simeq E_0 / E_c^e
@@ -159,8 +159,8 @@
 并且这些次级电子可以通过电离作用产生更多的低能电子，通过Geant4模拟中，我们可以统计到$\sim 20'000$个能量高于切伦科夫阈值（$0.25\,\mathrm{MeV}$）的电子通过电离过程产生。
 所有这些高于切伦科夫能量阈值的电子都可以辐射切伦科夫光子。
 
-通过逐个粒子地方式模拟如此簇射演化中产生的大量的次级粒子将消耗不少的计算资源。在中微子望远镜中，几乎所有的电子级联过程都发生在空旷的海水中，因此簇射演化的过程实际上是比较稳定的。
-图\ref{fig:param_num_photon_vs_energy}展示了电磁簇射中产生的总切伦科夫光子数与入射的电子能量之间的关系，我们可以看到他们之间存在如公式\ref{eq:emission_efficiency}中所描述的线性关系。
+通过逐个粒子地方式模拟如此簇射演化中产生的大量的次级粒子将消耗不少的计算资源。对电磁簇射的参数化描述在宇宙线簇射演化模型中已经有不少的讨论\cite{Matthews:2005, Montanus:2011, Stadelmaier:2023}，在这一项研究中，我们主要将簇射的演化与切伦科夫光的产生和发射过程紧密结合起来。
+图\ref{fig:param_num_photon_vs_energy}展示了在海水中，电磁簇射中产生的总切伦科夫光子数与入射的电子能量之间的关系，我们可以看到他们之间存在如公式\ref{eq:emission_efficiency}中所描述的线性关系。
 图\ref{fig:param_X_distribution}展示了电磁簇射的纵向发展，即产生切伦科夫光子的位置分布。
 更多有关电磁簇射中物理量的分布和其拟合结果将在附录\ref{appendix:shower_param}中展示。
 
@@ -358,7 +358,7 @@ GPU线程将会根据\textsf{CherenkovStep}的时间，位置，方向，速度�
 
 海铃中微子望远镜的探测单元——hDOM（hybrid Digital Optical Module）的内部结构比较复杂，它包含有PMT和SiPM两种不同的光敏元件。
 目前有关PMT和SiPM在探测器内部的几何布局仍然处于积极的研究中，我们需要通过模拟来对比不同排列下的探测器的光子接收面积。
-此外，PMT周围的反射环或者光学胶等辅助结构也同样会影响最终PMT的探测效率\cite{IceCube-Gen2_gel_pad:2021}。
+此外，PMT周围的反射环或者光学胶等辅助结构也同样会影响最终PMT的探测效率\cite{KM3NeT_mDOM_cone:2013, IceCube-Gen2_gel_pad:2021}。
 因此对于光子在hDOM内部的传播过程的模拟需要一个物理上准确并且可控程度高的程序来处理，在海铃的模拟框架中，我们基于Geant4构建了一个专门的模拟程序\footnote{\url{https://gitlab.com/hailing/hdom}}。
 Geant4中存在完整的光子在介质中的吸收和散射，以及光子在穿越不同折射率的介质界面时发生的透射和反射过程。
 此外Geant4中还可以通过将几个不同的基本几何体进行交集，并集和补集的操作来构建出复杂而且精细的几何，从而满足未来对探测器内部精细设计的需求。

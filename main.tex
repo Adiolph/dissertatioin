@@ -38,6 +38,9 @@
 \renewcommand{\v}[1]{\boldsymbol{#1}}
 \newcommand\pkg[1]{\textsf{#1}}
 
+% make sure figures are inside there own sections
+\usepackage[section]{placeins}
+
 \providecommand{\CHECK}[1]{{\protect\color{orange}\it{#1}}}
 
 % 插入代码
@@ -53,19 +56,19 @@
     thesiscover = {博士研究生学位论文},
     ethesisname = {Doctoral Dissertation},
     ctitle = {新一代深海中微子望远镜的设计优化},
-    etitle = {Optimizing the Next Generation Deep Sea Neutrino Telescope},
+    etitle = {Optimizing a Next Generation Deep Sea Neutrino Telescope},
     cauthor = {胡帆}, eauthor = {Fan Hu},
     studentid = {1801110211},
     % 具体时间以教务为准，初稿3月，送审4月，答辩5月，最终6月。
-    date = {\zhdigits{2023}\ \ 年\ \ \zhnumber{3}\ \ 月}, % June, 2022
+    date = {\zhdigits{2023}\ \ 年\ \ \zhnumber{4}\ \ 月}, % June, 2022
     school = {物理学院},
     cmajor = {天体物理}, emajor = {Astrophysics},
-    direction = {高能天体物理},
+    direction = {粒子天体物理},
     mentorlines = {2}, % 导师个数
     % 副教授 A.P. 讲师 Lec.
-    cmentor = {黎卓\ \ 教授\\徐东莲\ \ 教授}, ementor = {Prof.\ Zhuo, Li and Prof.\ Xu, Donglian},
-    ckeywords = {中微子望远镜，粒子模拟，探测器模拟，深海实验},
-    ekeywords = {Neutrino telescope, particle simulation, detector simulation, deep-sea experiment},
+    cmentor = {黎卓 \ \ 副教授\\ 徐东莲\ \ 李政道学者}, ementor = {Prof.\ Zhuo, Li and Prof.\ Xu, Donglian},
+    ckeywords = {中微子天文学；中微子望远镜；粒子模拟；探测器模拟；深海实验},
+    ekeywords = {neutrino astronomy, Neutrino telescope, particle simulation, detector simulation, deep-sea experiment},
     % 盲审模式参数, 需在documentclass增加blind
     blindid = {XXXXXXXXX}, discipline = {XXXX}
 }

@@ -170,12 +170,12 @@ $\rho(\vec{x})$表示介质的密度，与地球的密度模型有关，$\sigma_
 以一个具体的问题为例，假设我们要研究探测器能探测到的中微子事例率，那么我们可以通过如下表达式来计算实例率：
 \begin{equation}
     \frac{\mathrm{d}N}{\mathrm{d}t} = 
-    \int \mathbb{I}_\mathrm{sel}(s) \times \frac{\mathrm{d}N}{\mathrm{d}E ~\mathrm{d}\Omega ~\mathrm{d}t ~\mathrm{d}V} 
+    \int \mathrm{I}_\mathrm{sel}(s) \times \frac{\mathrm{d}N}{\mathrm{d}E ~\mathrm{d}\Omega ~\mathrm{d}t ~\mathrm{d}V} 
     ~\mathrm{d}E ~\mathrm{d}\hat{n} ~\mathrm{d}\vec{x} ,
     \label{eq:sampling_phy_trigger}
 \end{equation}
 其中我们引入了符号$s$（signal）来表示由能量$E$，方向$\hat{n}$的中微子在位置$\vec{x}$发生DIS过程引起的探测器探测到的信号。严格来说$s$是一个分布，因为粒子的相互作用结果是不确定的，同样的中微子所引发的事件会产生不同的信号，这种不确定性可以通过大量的模拟采样来消除。
-$\mathbb{I}_\mathrm{sel}(s)$表示事件筛选算法对事件$s$的响应结果，它根据信号的强弱程度，质量高低，以及与分析目标的符合程度返还1或者0的值。
+$\mathrm{I}_\mathrm{sel}(s)$表示事件筛选算法对事件$s$的响应结果，它根据信号的强弱程度，质量高低，以及与分析目标的符合程度返还1或者0的值。
 
 在我们的重要性采样的过程中，我们使用蒙特卡洛采样的方式来代替积分，即我们将积分运算理解为了对物理量求期望。
 蒙特卡洛采样中注入的模拟事件在相空间中的具体分布是可以由我们自己设计的，通常我们会将之与感兴趣的物理研究对象联系在一起，例如侧重于某一中微子的能量和入射角区间。
@@ -192,18 +192,18 @@ $\mathbb{I}_\mathrm{sel}(s)$表示事件筛选算法对事件$s$的响应结果�
 \begin{equation}
 \begin{aligned}
     \frac{\mathrm{d}N}{\mathrm{d}t} &= 
-    \int \mathbb{I}_\mathrm{sel}(s) \times 
+    \int \mathrm{I}_\mathrm{sel}(s) \times 
     \frac{\mathrm{d}N}{\mathrm{d}E ~\mathrm{d}\Omega ~\mathrm{d}t ~\mathrm{d}V}(E, \hat{n}, \vec{x}) 
     ~\mathrm{d}E ~\mathrm{d}\hat{n} ~\mathrm{d}\vec{x} \\
-    &= \int \mathbb{I}_\mathrm{sel}(s) \times 
+    &= \int \mathrm{I}_\mathrm{sel}(s) \times 
     \frac{\mathrm{d}N}{\mathrm{d}E ~\mathrm{d}\Omega ~\mathrm{d}t ~\mathrm{d}V} (E, \hat{n}, \vec{x})
     \times \frac{1}{P_\mathrm{mc} (E, \hat{n}, \vec{x})} \times P_\mathrm{mc} (E, \hat{n}, \vec{x})
     ~\mathrm{d}E ~\mathrm{d}\hat{n} ~\mathrm{d}\vec{x} \\
-    &= \mathbb{E}_s \left[ \mathbb{I}_\mathrm{sel}(s) \times 
+    &= \mathbb{E}_s \left[ \mathrm{I}_\mathrm{sel}(s) \times 
     \frac{\mathrm{d}N}{\mathrm{d}E ~\mathrm{d}\Omega ~\mathrm{d}t ~\mathrm{d}V} (E, \hat{n}, \vec{x})
     \times \frac{1}{F_\mathrm{mc} (E, \hat{n}) \times n_\mathrm{mc}(\vec{x})}   \right]  \\
     &= \frac{1}{N_\mathrm{tot}} \sum^N_i \left[ 
-    \mathbb{I}_\mathrm{sel}(s_i) \times 
+    \mathrm{I}_\mathrm{sel}(s_i) \times 
     \frac{\mathrm{d}N}{\mathrm{d}E ~\mathrm{d}\Omega ~\mathrm{d}t ~\mathrm{d}V} (E_i, \hat{n}_i, \vec{x}_i)
     \times \frac{1}{F_\mathrm{mc} (E_i, \hat{n}_i) \times n_\mathrm{mc}(\vec{x}_i)} \right]
 \end{aligned}
@@ -215,10 +215,10 @@ $\mathbb{I}_\mathrm{sel}(s)$表示事件筛选算法对事件$s$的响应结果�
 \begin{equation}
 \begin{aligned}
     \frac{\mathrm{d}N}{\mathrm{d}t} 
-    &= \frac{1}{N_\mathrm{tot}} \sum^N_i \left[ \mathbb{I}_\mathrm{sel}(s_i) \times 
+    &= \frac{1}{N_\mathrm{tot}} \sum^N_i \left[ \mathrm{I}_\mathrm{sel}(s_i) \times 
     \frac{\mathrm{d}N}{\mathrm{d}E ~\mathrm{d}\Omega ~\mathrm{d}t ~\mathrm{d}V} (E_i, \hat{n}_i, \vec{x}_i)
     \times \frac{1}{F_\mathrm{mc} (E_i, \hat{n}_i) \times n_\mathrm{mc}(\vec{x}_i)} \right] \\
-    &= \frac{1}{N_\mathrm{tot}} \sum^N_i \left[ \mathbb{I}_\mathrm{sel}(s_i) \times 
+    &= \frac{1}{N_\mathrm{tot}} \sum^N_i \left[ \mathrm{I}_\mathrm{sel}(s_i) \times 
     F_\mathrm{phy}(E_i, \hat{n}_i) \times
     P_\mathrm{surv}(E_i, X_i) \times
     \frac{1}{\lambda_\mathrm{int}(E_i)} \times
@@ -228,7 +228,7 @@ $\mathbb{I}_\mathrm{sel}(s)$表示事件筛选算法对事件$s$的响应结果�
 \label{eq:sampling_MC_terms_trigger}
 \end{equation}
 
-在上述表达式中，$\mathbb{I}_\mathrm{sel}(s)$依赖于探测器的探测能力以及对事件的筛选方式，中微子的物理流量$F_\mathrm{phy}(E, \hat{n})$对应于具体的某一个中微子源的测量结果或者对源流量的假设，$\lambda_\mathrm{int}(E)$与$P_\mathrm{surv}(E, X)$与中微子与物质的散射截面以及地球模型相关，$F_\mathrm{mc} (E, \hat{n})$和$n_\mathrm{mc}(\vec{x})$与采样的方式有关。在实际应用中，我们将后面四项作为权重项：
+在上述表达式中，$\mathrm{I}_\mathrm{sel}(s)$依赖于探测器的探测能力以及对事件的筛选方式，中微子的物理流量$F_\mathrm{phy}(E, \hat{n})$对应于具体的某一个中微子源的测量结果或者对源流量的假设，$\lambda_\mathrm{int}(E)$与$P_\mathrm{surv}(E, X)$与中微子与物质的散射截面以及地球模型相关，$F_\mathrm{mc} (E, \hat{n})$和$n_\mathrm{mc}(\vec{x})$与采样的方式有关。在实际应用中，我们将后面四项作为权重项：
 \begin{equation}
 \begin{aligned}
     w_\mathrm{tot} &= w_\mathrm{surv} \times w_\mathrm{int} \times w_\mathrm{flux} \times w_\mathrm{vol} \\
@@ -243,7 +243,7 @@ $\mathbb{I}_\mathrm{sel}(s)$表示事件筛选算法对事件$s$的响应结果�
 \begin{equation}
     \frac{\mathrm{d}N}{\mathrm{d}t} = 
     \frac{1}{N_\mathrm{tot}} \sum^N_i \left[ 
-    \mathbb{I}_\mathrm{sel}(s_i) \times 
+    \mathrm{I}_\mathrm{sel}(s_i) \times 
     F_\mathrm{phy} (E_i, \hat{n}_i) \times
     w_{\mathrm{tot}, i} \right]
 \label{eq:sampling_trigger_rate}
@@ -269,7 +269,8 @@ $\mathbb{I}_\mathrm{sel}(s)$表示事件筛选算法对事件$s$的响应结果�
     \label{fig:trigger_rate_nn}
 \end{figure}
 
-为中微子望远镜设计事件筛选算法是为了在存在高噪声的环境中筛选出有价值的信号。在深海中运行的中微子望远镜会受到多种不同的噪声的影响：PMT的暗噪声（$\lesssim 1 \,\mathrm{kHz} / \mathrm{PMT}$），海水的K40放射性衰变产生的切伦科夫光（$\sim 2 \,\mathrm{kHz} / \mathrm{PMT}$），有机物在受到扰动后激发出的光信号，深海鱼类发出的生物光信号等等。
+为中微子望远镜设计事件筛选算法是为了在存在高噪声的环境中筛选出像是有价值的信号\cite{KM3NeT_trigger:ICRC2019, IceCube_trigger:2015, KM3NeT_trigger:2018}。
+在深海中运行的中微子望远镜会受到多种不同的噪声的影响：PMT的暗噪声（$\lesssim 1 \,\mathrm{kHz} / \mathrm{PMT}$），海水的K40放射性衰变产生的切伦科夫光（$\sim 2 \,\mathrm{kHz} / \mathrm{PMT}$）\cite{KM3NeT_K40:2017}，有机物在受到扰动后激发出的光信号，深海鱼类发出的生物光信号\cite{ANTARES_biolumi:2021, Baikal_biolumi:2021}等等。
 
 目前关于海铃探测器的研究尚处于早期阶段，我们对噪声对中微子信号分析的影响尚未完全考虑清楚。因此在以下的研究中，我们主要考虑一些信号强度比较高，不容易受到噪声影响的径迹型事件。我们在以下分析中将事件筛选的标准设置为：
 \begin{enumerate}
@@ -365,7 +366,7 @@ $\mathbb{I}_\mathrm{sel}(s)$表示事件筛选算法对事件$s$的响应结果�
 \begin{equation}
     \frac{\mathrm{d}N}{\mathrm{d}t \mathrm{d}E \mathrm{d}\Omega} = 
     \frac{1}{N_\mathrm{tot} \Delta E \Delta\Omega} \sum_{i \in \mathrm{bin}} \left[ 
-    \mathbb{I}_\mathrm{sel}(s_i) \times 
+    \mathrm{I}_\mathrm{sel}(s_i) \times 
     F_\mathrm{phy} (E_i, \hat{n}_i) \times
     w_{\mathrm{tot}, i} \right] ,
 \label{eq:sampling_trigger_rate_diff}
@@ -375,11 +376,11 @@ $\mathbb{I}_\mathrm{sel}(s)$表示事件筛选算法对事件$s$的响应结果�
 将公式\ref{eq:sampling_trigger_rate_diff}代入到公式\ref{eq:eff_area_init}中可以得到：
 \begin{equation}
     A_\mathrm{eff} (\hat{n}, E) = \frac{1}{N_\mathrm{tot} \Delta E \Delta\Omega} \sum_{i \in \mathrm{bin}} \left[ 
-    \mathbb{I}_\mathrm{sel}(s_i) \times 
+    \mathrm{I}_\mathrm{sel}(s_i) \times 
     w_{\mathrm{tot}, i} \right] ,
     \label{eq:eff_area}
 \end{equation}
-这里，我们已经成功地从有效面积的表达式中约去了中微子源的物理流量$F_\mathrm{phy} (E, \hat{n})$。我们可以看到$A_\mathrm{eff} (\hat{n}, E)$与具体的中微子流量无关，而与探测器的对事件的探测能力$\mathbb{I}_\mathrm{sel}(s_i)$以及中微子的物理性质$w_{\mathrm{tot}, i}$有关，它反应的是探测器对某一种事件类型的探测能力。
+这里，我们已经成功地从有效面积的表达式中约去了中微子源的物理流量$F_\mathrm{phy} (E, \hat{n})$。我们可以看到$A_\mathrm{eff} (\hat{n}, E)$与具体的中微子流量无关，而与探测器的对事件的探测能力$\mathrm{I}_\mathrm{sel}(s_i)$以及中微子的物理性质$w_{\mathrm{tot}, i}$有关，它反应的是探测器对某一种事件类型的探测能力。
 
 通过模拟，我们得到探测器的有效面积与中微子的能量$E_\nu$和入射天顶角$\theta_z$之间的关系如图\ref{fig:eff_area}中所示。
 在将$\theta_z$分为向上入射（$-1 \leq \theta_z < -0.5$），水平入射（$-0.5 \leq \theta_z < 0.5$）和向下入射之后（$0.5 \leq \theta_z < 1$）之后，我们对不同入射角区间的有效面积求平均，可以得到图\ref{fig:eff_area_band}中所示的结果。
@@ -441,9 +442,9 @@ $l_\mathrm{det}$表示探测器的纬度，$t$表示时间，$T$表示地球的�
 
 在图\ref{fig:eff_area}中，我们的有效面积是以探测器为中心的，其横轴表示中微子事件相对于探测器的天顶角。现在，我们以中微子源为考虑对象，定义探测器对不同赤纬的中微子源的有效面积$A_\mathrm{eff}^s$：
 \begin{equation}
-    A_\mathrm{eff}^s(E_\nu, \delta_s) = \frac{1}{T} \int_0^T A_\mathrm{eff}(E_\nu, \theta_z(t)) \times \mathbb{I}_\mathrm{up}(\theta_z(t)) \, \mathrm{d} t \,   ,
+    A_\mathrm{eff}^s(E_\nu, \delta_s) = \frac{1}{T} \int_0^T A_\mathrm{eff}(E_\nu, \theta_z(t)) \times \mathrm{I}_\mathrm{up}(\theta_z(t)) \, \mathrm{d} t \,   ,
 \end{equation}
-其中，积分范围$T$表示一天，$\mathbb{I}_\mathrm{up}(\theta_z(t))$表示筛选向上穿行的缪子事件。
+其中，积分范围$T$表示一天，$\mathrm{I}_\mathrm{up}(\theta_z(t))$表示筛选向上穿行的缪子事件。
 这种有效面积的计算方式考虑了该天体物理源在一天的时间内相对于探测器的天顶角的平均效应。
 
 海铃对向上穿行的事件的有效面积如图\ref{fig:eff_area_with_lat}中所示。
@@ -461,7 +462,7 @@ $l_\mathrm{det}$表示探测器的纬度，$t$表示时间，$T$表示地球的�
 
 
 
-\subsection{对NGC 1068天体源的显著性}
+\subsection{对NGC 1068的显著性}
 
 对于某一假定的中微子天体物理源，我们可以通过分析来自该源的中微子事件在立体角空间上相对于背景事件的超出来计算望远镜对它观测的显著性。
 以NGC 1068这个IceCube列表中最有可能的源为例，我们假设源的流强$F_\mathrm{NGC}(E_\nu)$为IceCube的最佳拟合结果\cite{IceCube_NGC1068:2022}。
@@ -471,7 +472,7 @@ $l_\mathrm{det}$表示探测器的纬度，$t$表示时间，$T$表示地球的�
 
 \begin{figure}[!htb]%
     \centering
-    \includegraphics[width=0.60\textwidth]{img/source_background_flux.pdf}
+    \includegraphics[width=0.70\textwidth]{img/source_background_flux.pdf}
     \caption{IceCube测得的NGC 1068的中微子的流强，弥散天体物理中微子的流强，以及大气中微子的流强，阴影区域表示背景流强的不确定性。注意，图中NGC 1068源是一个点源，其流强单位为$\mathrm{GeV^{-1} cm^{-2} s^{-1}}$，而弥散天体物理中微子和大气中微子流强的单位中包含每立体角，为$\mathrm{GeV^{-1} cm^{-2} s^{-1} sr^{-1}}$。}
     \label{fig:source_background_flux}
 \end{figure}
